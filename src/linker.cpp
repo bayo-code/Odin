@@ -691,11 +691,7 @@ gb_internal i32 linker_stage(LinkerData *gen) {
 					platform_lib_str = gb_string_appendc(platform_lib_str, "-L/opt/local/lib ");
 				}
 
-				// Only specify this flag if the user has given a minimum version to target.
-				// This will cause warnings to show up for mismatched libraries.
-				if (build_context.minimum_os_version_string_given) {
-					link_settings = gb_string_append_fmt(link_settings, "-mmacosx-version-min=%.*s ", LIT(build_context.minimum_os_version_string));
-				}
+				link_settings = gb_string_append_fmt(link_settings, "-mmacosx-version-min=%.*s ", LIT(build_context.minimum_os_version_string));
 
 				if (build_context.build_mode != BuildMode_DynamicLibrary) {
 					// This points the linker to where the entry point is
